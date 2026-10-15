@@ -21,7 +21,7 @@ ES modules and `fetch` of map files need HTTP, so open the game through the serv
 - `preset-map.js` + `maps/*.json`: hand-made preset maps (planets, stations, spawn point).
 - `objects/`: generation and rendering for planets, asteroids, stations, debris, starships.
 - `render-world.js`, `render-ship.js`, `render-hud.js`: canvas drawing, split by layer.
-- `input.js`: keyboard and mouse-wheel state.
+- `input.js`: keyboard, mouse-wheel, and mouse click state. HUD menus register click regions with `addClickRegion`; hover selects and click presses Space (or a given key), reusing the keyboard code paths.
 - `station-prefixes.json`: name parts for generated stations.
 - `todo.txt`: feature backlog and known bugs.
 

@@ -3,6 +3,7 @@ import {
 	HB_WIDTH, HB_HEIGHT,
 	GRAVITY_RANGE_MULT, TEXT_COLOR, SHIP_LENGTH,
 } from './constants.js';
+import { addClickRegion } from './input.js';
 import { levelReqs, stationPopulation, getStationMenuItems, getScienceEntries, getStationScienceEntries, shipCargoUsed, shipCargoCapacity, shipFuelMax, shipO2Max, lookupStationName, stationMaxDockSpeed } from './objects/station.js';
 
 /** Build an rgba() string from the global TEXT_COLOR with a given alpha. */
@@ -634,6 +635,7 @@ export function renderInventory(ctx, canvas, ship, gameTime) {
 		for (let i = 0; i < holdItems.length; i++) {
 			const item = holdItems[i];
 			const isSel = i === ship.inventoryIndex;
+			if (!ship.deployConfirm) addClickRegion(leftCol - 4, y - 14, menuW - 40, 20, () => { ship.inventoryIndex = i; });
 
 			if (isSel) {
 				const rowH = 16;
@@ -690,6 +692,8 @@ export function renderInventory(ctx, canvas, ship, gameTime) {
 		const pulse = 0.7 + Math.sin(gameTime * 4) * 0.2;
 		ctx.fillStyle = textColor(pulse);
 		ctx.fillText('[Y] Confirm   [N] Cancel', dlgX + dlgW / 2, dlgY + 44);
+		addClickRegion(dlgX, dlgY + 30, dlgW / 2, 22, null, 'KeyY');
+		addClickRegion(dlgX + dlgW / 2, dlgY + 30, dlgW / 2, 22, null, 'KeyN');
 		ctx.textAlign = 'start';
 	}
 
@@ -751,8 +755,11 @@ function drawMenuPanel(ctx, menuX, menuY, menuW, menuH) {
 	ctx.beginPath(); ctx.moveTo(menuX + menuW - accentLen, menuY + menuH); ctx.lineTo(menuX + menuW, menuY + menuH); ctx.lineTo(menuX + menuW, menuY + menuH - accentLen); ctx.stroke();
 }
 
-/** Helper: render a list of menu items with selection highlight and number keys. */
-function drawMenuItems(ctx, items, selectedIndex, leftCol, menuX, menuW, startY, gameTime) {
+/**
+ * Helper: render a list of menu items with selection highlight and number keys.
+ * If `onSelect(i)` is given, selectable rows become clickable.
+ */
+function drawMenuItems(ctx, items, selectedIndex, leftCol, menuX, menuW, startY, gameTime, onSelect) {
 	let y = startY;
 	let selectableNum = 0; // counter for selectable items (1-based display)
 	ctx.font = '12px "Courier New", monospace';
@@ -760,6 +767,7 @@ function drawMenuItems(ctx, items, selectedIndex, leftCol, menuX, menuW, startY,
 		const item = items[i];
 		const isSel = i === selectedIndex;
 		const numLabel = item.selectable ? ++selectableNum : 0;
+		if (item.selectable && onSelect) addClickRegion(leftCol - 4, y - 13, menuW - 40, 18, () => onSelect(i));
 
 		if (item.selectable && isSel) {
 			const pulse = 0.15 + Math.sin(gameTime * 4) * 0.05;
@@ -895,7 +903,9 @@ export function renderInteractMenu(ctx, canvas, ship, gameTime) {
 
 	// Top-level menu items
 	const menuItems = getStationMenuItems(station, ship);
-	drawMenuItems(ctx, menuItems, ship.menuIndex || 0, leftCol, menuX, menuW, y, gameTime);
+	const subMenuOpen = ship.collectScienceMenuOpen || ship.cargoMenuOpen || ship.scienceMenuOpen || ship.stationSubMenu;
+	drawMenuItems(ctx, menuItems, ship.menuIndex || 0, leftCol, menuX, menuW, y, gameTime,
+		subMenuOpen ? null : (i) => { ship.menuIndex = i; });
 
 	// Footer
 	const closePulse = 0.5 + Math.sin(gameTime * 3) * 0.2;
@@ -941,7 +951,7 @@ function renderCategorySubMenu(ctx, menuX, menuY, menuW, menuH, leftCol, cat, st
 	ctx.beginPath(); ctx.moveTo(menuX + 20, menuY + 54); ctx.lineTo(menuX + menuW - 20, menuY + 54); ctx.stroke();
 
 	// Sub-items
-	drawMenuItems(ctx, cat.items, ship.subMenuIndex, leftCol, menuX, menuW, menuY + 72, gameTime);
+	drawMenuItems(ctx, cat.items, ship.subMenuIndex, leftCol, menuX, menuW, menuY + 72, gameTime, (i) => { ship.subMenuIndex = i; });
 
 	// Footer
 	const closePulse = 0.5 + Math.sin(gameTime * 3) * 0.2;
@@ -974,6 +984,7 @@ function renderCargoPickupSubMenu(ctx, menuX, menuY, menuW, menuH, leftCol, stat
 	const rowH = 20;
 
 	// "Pick Up All"
+	addClickRegion(leftCol - 4, sy - rowH + 6, menuW - 40, rowH, () => { ship.cargoMenuIndex = 0; });
 	const allSel = selIdx === 0;
 	if (allSel) { const p = 0.15 + Math.sin(gameTime * 4) * 0.05; ctx.fillStyle = `rgba(80,180,255,${p})`; ctx.fillRect(leftCol - 4, sy - rowH + 6, menuW - 40, rowH); ctx.fillStyle = textColor(0.95); }
 	else { ctx.fillStyle = textColor(0.7); }
@@ -989,6 +1000,7 @@ function renderCargoPickupSubMenu(ctx, menuX, menuY, menuW, menuH, leftCol, stat
 	for (let i = 0; i < cargos.length; i++) {
 		const c = cargos[i];
 		const isSel = selIdx === i + 1;
+		addClickRegion(leftCol - 4, sy - rowH + 6, menuW - 40, rowH, () => { ship.cargoMenuIndex = i + 1; });
 		if (isSel) { const p = 0.15 + Math.sin(gameTime * 4) * 0.05; ctx.fillStyle = `rgba(80,180,255,${p})`; ctx.fillRect(leftCol - 4, sy - rowH + 6, menuW - 40, rowH); ctx.fillStyle = textColor(0.95); }
 		else { ctx.fillStyle = textColor(0.7); }
 		const dist = Math.sqrt((c.destX - station.x) ** 2 + (c.destY - station.y) ** 2);
@@ -1028,6 +1040,7 @@ function renderCollectScienceSubMenu(ctx, menuX, menuY, menuW, menuH, leftCol, s
 	const rowH = 20;
 
 	// "Collect All"
+	addClickRegion(leftCol - 4, sy - rowH + 6, menuW - 40, rowH, () => { ship.collectScienceMenuIndex = 0; });
 	const allSel = selIdx === 0;
 	if (allSel) { const p = 0.15 + Math.sin(gameTime * 4) * 0.05; ctx.fillStyle = `rgba(80,180,255,${p})`; ctx.fillRect(leftCol - 4, sy - rowH + 6, menuW - 40, rowH); ctx.fillStyle = textColor(0.95); }
 	else { ctx.fillStyle = textColor(0.7); }
@@ -1043,6 +1056,7 @@ function renderCollectScienceSubMenu(ctx, menuX, menuY, menuW, menuH, leftCol, s
 	for (let i = 0; i < entries.length; i++) {
 		const e = entries[i];
 		const isSel = selIdx === i + 1;
+		addClickRegion(leftCol - 4, sy - rowH + 6, menuW - 40, rowH, () => { ship.collectScienceMenuIndex = i + 1; });
 		if (isSel) { const p = 0.15 + Math.sin(gameTime * 4) * 0.05; ctx.fillStyle = `rgba(80,180,255,${p})`; ctx.fillRect(leftCol - 4, sy - rowH + 6, menuW - 40, rowH); ctx.fillStyle = textColor(0.95); }
 		else { ctx.fillStyle = textColor(0.7); }
 		const eColor = e.entry.planetColor || 'rgb(180,140,255)';
@@ -1080,6 +1094,7 @@ function renderScienceGiveSubMenu(ctx, menuX, menuY, menuW, menuH, leftCol, stat
 	const rowH = 20;
 
 	// "Give All"
+	addClickRegion(leftCol - 4, sy - rowH + 6, menuW - 40, rowH, () => { ship.scienceMenuIndex = 0; });
 	const allSel = selIdx === 0;
 	if (allSel) { const p = 0.15 + Math.sin(gameTime * 4) * 0.05; ctx.fillStyle = `rgba(80,180,255,${p})`; ctx.fillRect(leftCol - 4, sy - rowH + 6, menuW - 40, rowH); ctx.fillStyle = textColor(0.95); }
 	else { ctx.fillStyle = textColor(0.7); }
@@ -1095,6 +1110,7 @@ function renderScienceGiveSubMenu(ctx, menuX, menuY, menuW, menuH, leftCol, stat
 	for (let i = 0; i < entries.length; i++) {
 		const e = entries[i];
 		const isSel = selIdx === i + 1;
+		addClickRegion(leftCol - 4, sy - rowH + 6, menuW - 40, rowH, () => { ship.scienceMenuIndex = i + 1; });
 		if (isSel) { const p = 0.15 + Math.sin(gameTime * 4) * 0.05; ctx.fillStyle = `rgba(80,180,255,${p})`; ctx.fillRect(leftCol - 4, sy - rowH + 6, menuW - 40, rowH); ctx.fillStyle = textColor(0.95); }
 		else { ctx.fillStyle = textColor(0.7); }
 		const eColor = e.entry.planetColor || 'rgb(180,140,255)';

@@ -17,7 +17,7 @@ import {
 	INTERSTELLAR_THRUST, INTERSTELLAR_ROTATION_SPEED,
 	INTERSTELLAR_CHUNK_SIZE, INTERSTELLAR_STAR_VISIT_RANGE, INTERSTELLAR_STAR_VISIT_MAX_VEL,
 } from './constants.js';
-import { keys, justPressed, consumeWheelDelta } from './input.js';
+import { keys, justPressed, consumeWheelDelta, processMouse } from './input.js';
 import { ship, thrusters, explosionParts, menuOpen, setMenuOpen, godMode, idealRocketMode, advanceGameTime, gameTime, spawnExplosion, universe, zoom, setZoom } from './state.js';
 import { generateChunk, worldMode, presetSpawn, addObjectToWorld, mulberry32, generateInterstellarChunkAt, getHomeStar, switchToSystem, switchToInterstellar, getCurrentSystemLayout, getSystemSpawn } from './world.js';
 import { generateStarship } from './objects/starship.js';
@@ -57,6 +57,9 @@ export function update(now, canvas, speedEl) {
 	const effTorque = RCS_TORQUE / currentMass;
 	const effCargoCapacity = CARGO_CAPACITY + getUpgradeBonus(ship, 'cargo');
 	ship.maxHp = SHIP_MAX_HP + getUpgradeBonus(ship, 'hull');
+
+	// Mouse hover/click on HUD menus (feeds justPressed like the keyboard)
+	processMouse();
 
 	// Zoom — +/- keys and mouse wheel
 	const wheel = consumeWheelDelta();

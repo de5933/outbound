@@ -7,6 +7,7 @@ import {
 	getSystemSpawn,
 } from './world.js';
 import { update, requestRespawn } from './update.js';
+import { clearClickRegions } from './input.js';
 import { registerStationName, lookupStationName, shipFuelMax, shipO2Max, getUpgradeBonus } from './objects/station.js';
 import { generateStarship, renderStarship } from './objects/starship.js';
 import { renderShip, renderTrajectory, renderOrbitalVector, renderDamageFlash, renderDamageTint, renderRefuelLines } from './render-ship.js';
@@ -592,6 +593,7 @@ let autosaveNotifyTime = 0;
 // --- Main draw ---
 
 function draw() {
+	clearClickRegions();
 	const cx = canvas.width / 2;
 	const cy = canvas.height / 2;
 	const z = zoom || 1;
