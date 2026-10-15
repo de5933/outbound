@@ -176,7 +176,8 @@ controlsBtn.addEventListener('click', () => {
 
 // --- Save / Load ---
 
-const SAVE_KEY_PREFIX = 'space-game-save';
+const SAVE_KEY_PREFIX = 'outbound-save';
+const LEGACY_SAVE_KEY_PREFIX = 'space-game-save';
 const AUTOSAVE_INTERVAL = 30000; // auto-save every 30 seconds
 
 /** Get the localStorage key for the current world. */
@@ -194,6 +195,21 @@ function saveKeyFor(mode, seedOrMap) {
 	}
 	return `${SAVE_KEY_PREFIX}-seed-${seedOrMap}`;
 }
+
+/** Move saves made under the game's old name to the current key prefix. */
+function migrateLegacySaves() {
+	const legacyKeys = [];
+	for (let i = 0; i < localStorage.length; i++) {
+		const key = localStorage.key(i);
+		if (key.startsWith(LEGACY_SAVE_KEY_PREFIX)) legacyKeys.push(key);
+	}
+	for (const key of legacyKeys) {
+		const newKey = SAVE_KEY_PREFIX + key.slice(LEGACY_SAVE_KEY_PREFIX.length);
+		if (!localStorage.getItem(newKey)) localStorage.setItem(newKey, localStorage.getItem(key));
+		localStorage.removeItem(key);
+	}
+}
+migrateLegacySaves();
 
 function saveGame(silent) {
 	// Remember which world was last played for auto-load on next visit

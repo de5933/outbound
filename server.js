@@ -41,5 +41,5 @@ http
 		});
 	})
 	.listen(PORT, () => {
-		console.log(`Space Game running at http://localhost:${PORT}`);
+		console.log(`Outbound running at http://localhost:${PORT}`);
 	});
