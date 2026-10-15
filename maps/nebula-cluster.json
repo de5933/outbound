@@ -1,0 +1,149 @@
+{
+	"name": "Nebula Cluster",
+	"description": "A dense cluster of stations and resources in a small area",
+	"spawn": { "x": 0, "y": 0, "angle": -1.5708 },
+	"objects": [
+		{
+			"type": "planet",
+			"name": "Iris",
+			"x": -1200, "y": -800,
+			"radius": 65,
+			"color1": "rgb(160,80,200)",
+			"color2": "rgb(100,40,150)",
+			"rings": true,
+			"ringColor": "rgba(180,120,220,0.3)",
+			"ringTilt": 0.4,
+			"angle": 0.6
+		},
+		{
+			"type": "planet",
+			"name": "Jade",
+			"x": 1000, "y": -500,
+			"radius": 50,
+			"color1": "rgb(40,180,100)",
+			"color2": "rgb(20,120,60)",
+			"rings": false,
+			"angle": 2.1
+		},
+		{
+			"type": "planet",
+			"name": "Cobalt",
+			"x": 500, "y": 1200,
+			"radius": 80,
+			"color1": "rgb(40,80,200)",
+			"color2": "rgb(15,40,140)",
+			"rings": false,
+			"angle": 4.0
+		},
+		{
+			"type": "planet",
+			"name": "Amber",
+			"x": -800, "y": 900,
+			"radius": 40,
+			"color1": "rgb(220,170,50)",
+			"color2": "rgb(170,120,20)",
+			"rings": false,
+			"angle": 1.5
+		},
+		{
+			"type": "planet",
+			"name": "Crimson",
+			"x": 1800, "y": 400,
+			"radius": 90,
+			"color1": "rgb(200,40,40)",
+			"color2": "rgb(140,15,15)",
+			"rings": true,
+			"ringColor": "rgba(220,80,80,0.2)",
+			"ringTilt": 0.25,
+			"angle": 3.2
+		},
+		{
+			"type": "station",
+			"name": "Hub Central",
+			"x": 0, "y": 200,
+			"size": 35,
+			"arms": 5,
+			"angle": 0,
+			"spin": 0.03,
+			"color": "rgb(180,180,200)"
+		},
+		{
+			"type": "station",
+			"name": "Iris Watch",
+			"x": -1000, "y": -700,
+			"size": 22,
+			"arms": 3,
+			"angle": 0.8,
+			"spin": 0.05,
+			"color": "rgb(160,120,190)"
+		},
+		{
+			"type": "station",
+			"name": "Jade Outpost",
+			"x": 1200, "y": -400,
+			"size": 20,
+			"arms": 2,
+			"angle": 1.5,
+			"spin": 0.06,
+			"color": "rgb(120,180,140)"
+		},
+		{
+			"type": "station",
+			"name": "Cobalt Dock",
+			"x": 600, "y": 1000,
+			"size": 25,
+			"arms": 3,
+			"angle": 2.2,
+			"spin": 0.04,
+			"color": "rgb(120,140,200)"
+		},
+		{
+			"type": "station",
+			"name": "Crimson Gate",
+			"x": 1600, "y": 300,
+			"size": 28,
+			"arms": 4,
+			"angle": 0.3,
+			"spin": 0.04,
+			"color": "rgb(200,140,130)"
+		},
+		{ "type": "asteroid", "x": -400, "y": -300, "radius": 20, "angle": 0.5, "spin": 0.1, "color": "rgb(90,80,70)" },
+		{ "type": "asteroid", "x": -350, "y": -200, "radius": 15, "angle": 2.0, "spin": -0.12, "color": "rgb(80,75,65)" },
+		{ "type": "asteroid", "x": -500, "y": -250, "radius": 25, "angle": 3.5, "spin": 0.08, "color": "rgb(85,78,68)" },
+		{ "type": "asteroid", "x": 300, "y": 500, "radius": 18, "angle": 1.2, "spin": -0.09, "color": "rgb(92,84,74)" },
+		{ "type": "asteroid", "x": 400, "y": 600, "radius": 22, "angle": 4.8, "spin": 0.15, "color": "rgb(75,70,62)" },
+		{ "type": "asteroid", "x": -200, "y": 600, "radius": 30, "angle": 0.8, "spin": -0.06, "color": "rgb(88,80,72)" },
+		{ "type": "asteroid", "x": 1300, "y": -100, "radius": 16, "angle": 5.5, "spin": 0.18, "color": "rgb(82,76,67)" },
+		{ "type": "asteroid", "x": 1400, "y": 0, "radius": 24, "angle": 1.0, "spin": -0.1, "color": "rgb(95,86,76)" },
+		{
+			"type": "debris",
+			"x": 200, "y": -400,
+			"pieces": [
+				{ "ox": 0, "oy": 0, "r": 5, "shade": 70, "spin": 0.2 },
+				{ "ox": 15, "oy": -10, "r": 4, "shade": 65, "spin": -0.3 },
+				{ "ox": -12, "oy": 8, "r": 6, "shade": 75, "spin": 0.15 },
+				{ "ox": 20, "oy": 15, "r": 3, "shade": 60, "spin": -0.25 }
+			]
+		},
+		{
+			"type": "debris",
+			"x": -600, "y": 400,
+			"pieces": [
+				{ "ox": 5, "oy": -5, "r": 5, "shade": 72, "spin": 0.18 },
+				{ "ox": -15, "oy": 10, "r": 3, "shade": 64, "spin": -0.22 },
+				{ "ox": 10, "oy": 12, "r": 4, "shade": 69, "spin": 0.12 }
+			]
+		},
+		{
+			"type": "debris",
+			"x": 900, "y": 700,
+			"pieces": [
+				{ "ox": 0, "oy": 5, "r": 4, "shade": 68, "spin": -0.15 },
+				{ "ox": -10, "oy": -8, "r": 6, "shade": 74, "spin": 0.2 },
+				{ "ox": 18, "oy": 3, "r": 3, "shade": 62, "spin": -0.1 },
+				{ "ox": -5, "oy": 20, "r": 5, "shade": 70, "spin": 0.3 },
+				{ "ox": 12, "oy": -15, "r": 4, "shade": 66, "spin": -0.2 }
+			]
+		}
+	]
+}

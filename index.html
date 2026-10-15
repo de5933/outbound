@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <div id="hud">
+        <div>Speed: <span id="speed">0.0</span> m/s</div>
+        <div><span id="seed-label">Seed</span>: <span id="seed"></span></div>
+    </div>
+    <div id="menu" class="hidden">
+        <div id="menu-panel">
+            <h1>PAUSED</h1>
+            <div class="menu-divider"></div>
+            <div class="menu-section">
+                <label for="map-mode">Mode</label>
+                <select id="map-mode">
+                    <option value="procedural">Procedural</option>
+                    <option value="solar-system">Solar System</option>
+                    <option value="binary-stars">Binary Stars</option>
+                    <option value="nebula-cluster">Nebula Cluster</option>
+                    <option value="the-expanse">The Expanse</option>
+                    <option value="lagrange-lab">Lagrange Lab</option>
+                </select>
+            </div>
+            <div class="menu-section" id="seed-section">
+                <label for="seed-input">World Seed</label>
+                <div class="seed-row">
+                    <input type="text" id="seed-input" spellcheck="false" autocomplete="off">
+                    <button id="random-seed-btn" title="Random seed">&#x21bb;</button>
+                </div>
+            </div>
+            <div class="menu-buttons">
+                <button id="restart-btn">Restart</button>
+                <button id="resume-btn">Resume</button>
+            </div>
+            <button id="load-btn">Load Game</button>
+            <div id="save-list" class="hidden"></div>
+            <div id="save-status" class="menu-hint"></div>
+            <button id="settings-btn">Settings</button>
+            <div class="menu-hint">[ESC] to resume</div>
+        </div>
+        <div id="settings-panel" class="hidden">
+            <h1>SETTINGS</h1>
+            <div class="menu-divider"></div>
+            <div class="menu-section">
+                <label class="toggle-row">
+                    <input type="checkbox" id="god-mode-toggle">
+                    <span>God Mode</span>
+                </label>
+            </div>
+            <div class="menu-section">
+                <label class="toggle-row">
+                    <input type="checkbox" id="ideal-rocket-toggle">
+                    <span>Ideal Rocket Mode</span>
+                </label>
+            </div>
+            <button id="controls-btn">Controls</button>
+            <div id="controls-panel" class="hidden">
+                <div class="controls-grid">
+                    <span class="key">W A S D</span><span>RCS Thrusters</span>
+                    <span class="key">Q / E</span><span>Rotate</span>
+                    <span class="key">SPACE</span><span>Main Drive</span>
+                    <span class="key">X</span><span>Kill Rotation</span>
+                    <span class="key">Z</span><span>Kill All Velocity</span>
+                    <span class="key">R</span><span>Auto Flip (upgrade required)</span>
+                    <span class="key">F</span><span>Dock / Undock</span>
+                    <span class="key">+ / -</span><span>Zoom In / Out</span>
+                    <span class="key">T</span><span>Inventory</span>
+                    <span class="key">TAB</span><span>Back / Close</span>
+                    <span class="key">ESC</span><span>Pause Menu</span>
+                </div>
+            </div>
+            <button id="settings-back-btn">Back</button>
+        </div>
+    </div>
+    <div id="game-over" class="hidden">
+        <div id="game-over-panel">
+            <h1>GAME OVER</h1>
+            <div class="menu-divider"></div>
+            <div id="death-cause"></div>
+            <div id="death-buttons" class="menu-buttons hidden">
+                <button id="death-restart-btn">Restart</button>
+                <button id="death-load-btn">Load</button>
+            </div>
+            <div id="death-status" class="menu-hint"></div>
+        </div>
+    </div>
+    <div id="rename-overlay" class="hidden">
+        <div id="rename-panel">
+            <label for="rename-input">Rename Station</label>
+            <input type="text" id="rename-input" spellcheck="false" autocomplete="off" maxlength="30">
+            <div class="menu-buttons">
+                <button id="rename-cancel-btn">Cancel</button>
+                <button id="rename-confirm-btn">Rename</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="game.js"></script>
+</body>
+</html>

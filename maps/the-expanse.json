@@ -1,0 +1,150 @@
+{
+	"name": "The Expanse",
+	"description": "A long corridor of stations and hazards stretching across deep space",
+	"spawn": { "x": -8000, "y": 0, "angle": 0 },
+	"objects": [
+		{
+			"type": "planet",
+			"name": "Waypoint Alpha",
+			"x": -6000, "y": 200,
+			"radius": 45,
+			"color1": "rgb(100,160,200)",
+			"color2": "rgb(50,100,150)",
+			"rings": false,
+			"angle": 0.4
+		},
+		{
+			"type": "station",
+			"name": "Gate Alpha",
+			"x": -7500, "y": 0,
+			"size": 30,
+			"arms": 4,
+			"angle": 0,
+			"spin": 0.04,
+			"color": "rgb(180,180,200)"
+		},
+		{
+			"type": "station",
+			"name": "Waypoint Depot",
+			"x": -5800, "y": 100,
+			"size": 22,
+			"arms": 3,
+			"angle": 0.5,
+			"spin": 0.05,
+			"color": "rgb(160,170,190)"
+		},
+		{ "type": "asteroid", "x": -4500, "y": -200, "radius": 30, "angle": 0.5, "spin": 0.08, "color": "rgb(90,80,70)" },
+		{ "type": "asteroid", "x": -4300, "y": 100, "radius": 22, "angle": 1.8, "spin": -0.1, "color": "rgb(80,75,65)" },
+		{ "type": "asteroid", "x": -4600, "y": 300, "radius": 18, "angle": 3.2, "spin": 0.12, "color": "rgb(85,78,68)" },
+		{ "type": "asteroid", "x": -4200, "y": -100, "radius": 25, "angle": 4.5, "spin": -0.07, "color": "rgb(92,84,74)" },
+		{ "type": "asteroid", "x": -4400, "y": 200, "radius": 15, "angle": 0.1, "spin": 0.15, "color": "rgb(75,70,62)" },
+		{
+			"type": "debris",
+			"x": -3500, "y": -100,
+			"pieces": [
+				{ "ox": 0, "oy": 0, "r": 6, "shade": 72, "spin": 0.15 },
+				{ "ox": 15, "oy": -12, "r": 4, "shade": 65, "spin": -0.2 },
+				{ "ox": -10, "oy": 8, "r": 5, "shade": 70, "spin": 0.1 },
+				{ "ox": 20, "oy": 10, "r": 3, "shade": 60, "spin": -0.3 },
+				{ "ox": -18, "oy": -5, "r": 7, "shade": 78, "spin": 0.08 }
+			]
+		},
+		{
+			"type": "debris",
+			"x": -3300, "y": 200,
+			"pieces": [
+				{ "ox": 5, "oy": -8, "r": 5, "shade": 68, "spin": -0.12 },
+				{ "ox": -12, "oy": 5, "r": 4, "shade": 74, "spin": 0.22 },
+				{ "ox": 8, "oy": 15, "r": 6, "shade": 66, "spin": -0.08 }
+			]
+		},
+		{
+			"type": "planet",
+			"name": "The Maw",
+			"x": -2000, "y": 0,
+			"radius": 130,
+			"color1": "rgb(40,20,40)",
+			"color2": "rgb(15,5,15)",
+			"rings": false,
+			"angle": 0
+		},
+		{
+			"type": "planet",
+			"name": "Haven",
+			"x": 0, "y": -400,
+			"radius": 60,
+			"color1": "rgb(50,150,80)",
+			"color2": "rgb(20,100,40)",
+			"rings": false,
+			"angle": 1.8
+		},
+		{
+			"type": "station",
+			"name": "Haven Rest",
+			"x": 200, "y": -500,
+			"size": 28,
+			"arms": 4,
+			"angle": 1.0,
+			"spin": 0.03,
+			"color": "rgb(140,180,150)"
+		},
+		{
+			"type": "planet",
+			"name": "Forge",
+			"x": 2500, "y": 300,
+			"radius": 50,
+			"color1": "rgb(200,100,30)",
+			"color2": "rgb(150,50,10)",
+			"rings": false,
+			"angle": 3.5
+		},
+		{ "type": "asteroid", "x": 2200, "y": 100, "radius": 20, "angle": 2.0, "spin": 0.1, "color": "rgb(90,80,70)" },
+		{ "type": "asteroid", "x": 2300, "y": 400, "radius": 28, "angle": 0.8, "spin": -0.09, "color": "rgb(85,78,68)" },
+		{ "type": "asteroid", "x": 2700, "y": 200, "radius": 16, "angle": 5.0, "spin": 0.14, "color": "rgb(80,75,65)" },
+		{
+			"type": "station",
+			"name": "Forge Works",
+			"x": 2600, "y": 150,
+			"size": 20,
+			"arms": 2,
+			"angle": 2.5,
+			"spin": 0.06,
+			"color": "rgb(200,160,130)"
+		},
+		{
+			"type": "debris",
+			"x": 4000, "y": -200,
+			"pieces": [
+				{ "ox": 0, "oy": 0, "r": 5, "shade": 70, "spin": 0.18 },
+				{ "ox": -15, "oy": 10, "r": 4, "shade": 64, "spin": -0.22 },
+				{ "ox": 10, "oy": -12, "r": 6, "shade": 76, "spin": 0.08 },
+				{ "ox": 18, "oy": 5, "r": 3, "shade": 62, "spin": -0.15 }
+			]
+		},
+		{
+			"type": "planet",
+			"name": "Terminus",
+			"x": 6000, "y": -100,
+			"radius": 100,
+			"color1": "rgb(180,180,200)",
+			"color2": "rgb(120,120,150)",
+			"rings": true,
+			"ringColor": "rgba(200,200,220,0.3)",
+			"ringTilt": 0.3,
+			"angle": 5.0
+		},
+		{
+			"type": "station",
+			"name": "Gate Omega",
+			"x": 6500, "y": 0,
+			"size": 32,
+			"arms": 5,
+			"angle": 0,
+			"spin": 0.03,
+			"color": "rgb(180,180,200)"
+		},
+		{ "type": "asteroid", "x": 5000, "y": 100, "radius": 24, "angle": 1.5, "spin": 0.1, "color": "rgb(88,80,72)" },
+		{ "type": "asteroid", "x": 5200, "y": -150, "radius": 18, "angle": 3.8, "spin": -0.12, "color": "rgb(82,76,67)" },
+		{ "type": "asteroid", "x": 5400, "y": 250, "radius": 20, "angle": 0.3, "spin": 0.07, "color": "rgb(95,86,76)" }
+	]
+}

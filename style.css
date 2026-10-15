@@ -1,0 +1,474 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+    overflow: hidden;
+    font-family: 'Courier New', monospace;
+    color: #0f0;
+}
+
+canvas {
+    display: block;
+}
+
+#hud {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgb(180, 200, 220);
+    text-shadow: 0 0 4px rgba(180, 200, 220, 0.4);
+}
+
+/* --- Menu overlay --- */
+
+#menu {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10;
+}
+
+#menu.hidden {
+    display: none;
+}
+
+#menu-panel {
+    width: 320px;
+    padding: 28px 32px;
+    background: rgba(10, 15, 30, 0.95);
+    border: 1px solid rgba(80, 180, 255, 0.5);
+    text-align: center;
+}
+
+#menu-panel h1 {
+    margin: 0 0 12px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 6px;
+    text-shadow: 0 0 12px rgba(80, 180, 255, 0.4);
+}
+
+.menu-divider {
+    height: 1px;
+    background: rgba(80, 180, 255, 0.3);
+    margin: 0 0 20px;
+}
+
+.menu-section {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.menu-section label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 12px;
+    color: rgba(180, 220, 255, 0.7);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.seed-row {
+    display: flex;
+    gap: 6px;
+}
+
+#seed-input {
+    flex: 1;
+    padding: 6px 10px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(80, 180, 255, 0.3);
+    color: #5bf;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    outline: none;
+}
+
+#seed-input:focus {
+    border-color: rgba(80, 180, 255, 0.7);
+    box-shadow: 0 0 6px rgba(80, 180, 255, 0.2);
+}
+
+#random-seed-btn {
+    width: 34px;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(80, 180, 255, 0.3);
+    color: #5bf;
+    font-size: 18px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+}
+
+#random-seed-btn:hover {
+    background: rgba(80, 180, 255, 0.15);
+    border-color: rgba(80, 180, 255, 0.6);
+}
+
+.menu-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.menu-buttons button {
+    flex: 1;
+    padding: 10px 0;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(80, 180, 255, 0.4);
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.menu-buttons button:hover {
+    background: rgba(80, 180, 255, 0.15);
+    border-color: rgba(80, 180, 255, 0.8);
+}
+
+#restart-btn,
+#death-restart-btn {
+    color: #f80;
+    border-color: rgba(255, 136, 0, 0.4);
+}
+
+#restart-btn:hover,
+#death-restart-btn:hover {
+    background: rgba(255, 136, 0, 0.15);
+    border-color: rgba(255, 136, 0, 0.8);
+}
+
+.toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: rgba(180, 220, 255, 0.7);
+    text-transform: none;
+}
+
+.toggle-row input[type="checkbox"] {
+    accent-color: #5bf;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+#map-mode {
+    width: 100%;
+    padding: 6px 10px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(80, 180, 255, 0.3);
+    color: #5bf;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+}
+
+#map-mode:focus {
+    border-color: rgba(80, 180, 255, 0.7);
+    box-shadow: 0 0 6px rgba(80, 180, 255, 0.2);
+}
+
+#map-mode option {
+    background: #0a0f1e;
+    color: #5bf;
+}
+
+#load-btn {
+    width: 100%;
+    padding: 8px 0;
+    margin-bottom: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(80, 180, 255, 0.4);
+    color: rgb(180, 200, 220);
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+#load-btn:hover {
+    background: rgba(80, 180, 255, 0.15);
+    border-color: rgba(80, 180, 255, 0.8);
+}
+
+#save-list {
+    margin-bottom: 12px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+#save-list.hidden {
+    display: none;
+}
+
+#save-list .save-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    margin-bottom: 2px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(80, 180, 255, 0.2);
+    color: rgb(180, 200, 220);
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+#save-list .save-entry:hover {
+    background: rgba(80, 180, 255, 0.15);
+    border-color: rgba(80, 180, 255, 0.6);
+}
+
+#save-list .save-entry .save-name {
+    flex: 1;
+}
+
+#save-list .save-entry .save-delete {
+    color: rgba(255, 100, 100, 0.6);
+    cursor: pointer;
+    margin-left: 8px;
+    font-size: 13px;
+}
+
+#save-list .save-entry .save-delete:hover {
+    color: rgba(255, 100, 100, 1);
+}
+
+#settings-btn {
+    width: 100%;
+    padding: 8px 0;
+    margin-bottom: 16px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(80, 180, 255, 0.4);
+    color: rgb(180, 200, 220);
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+#settings-btn:hover {
+    background: rgba(80, 180, 255, 0.15);
+    border-color: rgba(80, 180, 255, 0.8);
+}
+
+#settings-panel {
+    width: 320px;
+    padding: 28px 32px;
+    background: rgba(10, 15, 30, 0.95);
+    border: 1px solid rgba(80, 180, 255, 0.5);
+    text-align: center;
+}
+
+#settings-panel.hidden {
+    display: none;
+}
+
+#settings-panel h1 {
+    margin: 0 0 12px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 6px;
+    text-shadow: 0 0 12px rgba(80, 180, 255, 0.4);
+}
+
+#controls-btn {
+    width: 100%;
+    padding: 8px 0;
+    margin-bottom: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(80, 180, 255, 0.4);
+    color: rgb(180, 200, 220);
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+#controls-btn:hover {
+    background: rgba(80, 180, 255, 0.15);
+    border-color: rgba(80, 180, 255, 0.8);
+}
+
+#settings-back-btn {
+    width: 100%;
+    padding: 8px 0;
+    margin-top: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(80, 180, 255, 0.4);
+    color: rgb(180, 200, 220);
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+#settings-back-btn:hover {
+    background: rgba(80, 180, 255, 0.15);
+    border-color: rgba(80, 180, 255, 0.8);
+}
+
+#controls-panel {
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+#controls-panel.hidden {
+    display: none;
+}
+
+.controls-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 14px;
+    font-size: 12px;
+    color: rgb(180, 200, 220);
+}
+
+.controls-grid .key {
+    color: rgba(180, 200, 220, 0.9);
+    font-weight: bold;
+    text-align: right;
+}
+
+.controls-grid span:not(.key) {
+    color: rgba(180, 200, 220, 0.6);
+}
+
+/* --- Game over overlay --- */
+
+#game-over {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+}
+
+#game-over.hidden {
+    display: none;
+}
+
+#game-over-panel {
+    width: 340px;
+    padding: 24px 32px 16px;
+    background: rgba(10, 15, 30, 0.95);
+    border: 1px solid rgba(80, 180, 255, 0.6);
+    text-align: center;
+}
+
+#game-over-panel h1 {
+    margin: 0 0 12px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 4px;
+    text-shadow: 0 0 12px rgba(80, 180, 255, 0.4);
+}
+
+#death-cause {
+    margin-bottom: 20px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: rgba(180, 200, 220, 0.7);
+}
+
+#death-buttons {
+    margin-bottom: 8px;
+}
+
+/* Reserve the row's space so the panel doesn't jump when the buttons appear */
+#death-buttons.hidden {
+    visibility: hidden;
+}
+
+.menu-buttons button:disabled {
+    opacity: 0.35;
+    cursor: default;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#death-status {
+    min-height: 14px;
+}
+
+#rename-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 20;
+}
+
+#rename-overlay.hidden {
+    display: none;
+}
+
+#rename-panel {
+    width: 300px;
+    padding: 20px 24px;
+    background: rgba(10, 15, 30, 0.95);
+    border: 1px solid rgba(80, 180, 255, 0.5);
+    text-align: center;
+}
+
+#rename-panel label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: rgb(180, 200, 220);
+    letter-spacing: 1px;
+}
+
+#rename-input {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 14px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(80, 180, 255, 0.3);
+    color: rgb(180, 200, 220);
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    outline: none;
+    text-align: center;
+}
+
+#rename-input:focus {
+    border-color: rgba(80, 180, 255, 0.7);
+    box-shadow: 0 0 6px rgba(80, 180, 255, 0.2);
+}
+
+#save-status {
+    min-height: 16px;
+    margin-bottom: 8px;
+    font-size: 11px;
+    text-align: center;
+    transition: color 0.3s;
+}
+
+.menu-hint {
+    font-size: 11px;
+    color: rgba(180, 200, 220, 0.5);
+}

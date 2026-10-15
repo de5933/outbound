@@ -1,0 +1,65 @@
+[X] Save game to local storage
+[ ] Lock camera rotation to the ship (rotate the map instread)
+[ ] More map presets
+[x] Icons for minerals
+[ ] Icons for cargo
+[ ] Science bug: If there is a station in a non-loaded chunk, the ship will try to gather science from the planet and then halt once the station appears. 
+[x] Asteroid stations. 
+	Built on asteroids. 
+	They collect minerals automatically.
+	Their collected minerals go toward their mineral upgrade requirements. 
+	Once the mineral requirements are met, they accumulate a limited amount of additional minerals that the player can pick up.
+[ ] Balance science and mineral requirements. 
+	Right now, minerals are much easier to get than science.
+[x] More features for station upgrades
+[x] Don't let stations produce cargo that delivers to themselves
+[x] Allow naming (and renaming) of user-created stations. 
+[x] Ship upgrades. 
+	Fuel capacity
+	O2 capacity
+	Hull strength
+	RCS thrust
+	Main engine thrust
+	Mineral collection rate
+	Science collection rate
+	Cargo capacity
+[ ] Rocket equation. Simulate ship's mass, accounting for fuel and cargo. 
+	Thrusters apply thrust, not acceleration. When the tanks are full, acceleration is reduced. 
+[x] Fix station names
+[x] Include station distance on package entries
+[x] When picking up cargo from a station, show a submenu with each type of cargo broken down by destination
+[ ] Interstellar travel. 
+	Once a station levels up enough it produces a starship component.
+	A starship is assembled using multiple components that must be produced at different stations.
+	The starship components are "Structure", "Collector", "Engine", and "Shielding". 
+	The final assembly looks like a Bussard Ramjet. 
+	Once the starship is assembled, the user can dock with it and travel to other stars.
+	The interstellar travel view shows only stars, no planets or asteroids. 
+	Acceleration is slow, but there is no fuel consumption.
+	The starship can rotate freely, but it has no RCS thrusters and can only accelerate in the direction it's facing. 
+	Once the starship gets close to the star and velocity is close to zero, the player can press [F] to visit the star.
+	From there, the player can undock from the starship and explore the star system freely. 
+	The starship can be salvaged to produce a Station Core, but this means there is no way to leave the system until a new starship is built. 
+	Extrasolar systems have no space stations. The player must build their own. 
+
+
+Update the station menu to place some items in submenus. Follow this structure:
+Services
+	Refuel
+	O2 Resupply
+	Hull Repair
+	Remote Refuel
+	Remote O2
+Volunteer Work
+Science
+	Collect Science
+	Give Science
+Minerals
+	Collect Minerals
+	Give Minerals
+Cargo
+	Pick Up Cargo
+	Deliver Cargo
+Rename Station
+
+1.25.25 ST Querty1 Qwerty1

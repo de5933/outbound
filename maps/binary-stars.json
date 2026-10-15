@@ -1,0 +1,161 @@
+{
+	"name": "Binary Stars",
+	"description": "Two stars locked in orbit, with planets caught between them",
+	"spawn": { "x": 0, "y": -800, "angle": 0 },
+	"objects": [
+		{
+			"type": "planet",
+			"name": "Solaris",
+			"x": -600,
+			"y": 0,
+			"radius": 120,
+			"color1": "rgb(255,200,60)",
+			"color2": "rgb(200,140,0)",
+			"rings": false,
+			"angle": 0
+		},
+		{
+			"type": "planet",
+			"name": "Umbra",
+			"x": 600,
+			"y": 0,
+			"radius": 100,
+			"color1": "rgb(255,120,40)",
+			"color2": "rgb(180,60,10)",
+			"rings": false,
+			"angle": 0
+		},
+		{
+			"type": "planet",
+			"name": "Tidal Lock",
+			"x": 0,
+			"y": 0,
+			"radius": 30,
+			"color1": "rgb(180,80,80)",
+			"color2": "rgb(100,40,40)",
+			"rings": false,
+			"angle": 1.2
+		},
+		{
+			"type": "planet",
+			"name": "Perihelion",
+			"x": 0,
+			"y": -1800,
+			"radius": 55,
+			"color1": "rgb(60,120,200)",
+			"color2": "rgb(20,60,140)",
+			"rings": false,
+			"angle": 0.8
+		},
+		{
+			"type": "station",
+			"name": "Midpoint Station",
+			"x": 120,
+			"y": -800,
+			"size": 30,
+			"arms": 4,
+			"angle": 0,
+			"spin": 0.04,
+			"color": "rgb(180,180,200)"
+		},
+		{
+			"type": "planet",
+			"name": "Frost",
+			"x": -2500,
+			"y": 1200,
+			"radius": 70,
+			"color1": "rgb(180,210,230)",
+			"color2": "rgb(120,150,170)",
+			"rings": true,
+			"ringColor": "rgba(200,220,240,0.25)",
+			"ringTilt": 0.35,
+			"angle": 2.4
+		},
+		{
+			"type": "planet",
+			"name": "Ember",
+			"x": 2200,
+			"y": -1500,
+			"radius": 45,
+			"color1": "rgb(220,100,30)",
+			"color2": "rgb(160,50,10)",
+			"rings": false,
+			"angle": 3.8
+		},
+		{
+			"type": "asteroid",
+			"x": 1500,
+			"y": 800,
+			"radius": 25,
+			"angle": 0.5,
+			"spin": 0.1,
+			"color": "rgb(90,80,70)"
+		},
+		{
+			"type": "asteroid",
+			"x": 1600,
+			"y": 900,
+			"radius": 18,
+			"angle": 1.8,
+			"spin": -0.12,
+			"color": "rgb(80,75,65)"
+		},
+		{
+			"type": "asteroid",
+			"x": 1400,
+			"y": 950,
+			"radius": 22,
+			"angle": 3.0,
+			"spin": 0.08,
+			"color": "rgb(85,78,68)"
+		},
+		{
+			"type": "asteroid",
+			"x": -1400,
+			"y": -900,
+			"radius": 20,
+			"angle": 2.1,
+			"spin": -0.09,
+			"color": "rgb(92,84,74)"
+		},
+		{
+			"type": "asteroid",
+			"x": -1500,
+			"y": -800,
+			"radius": 15,
+			"angle": 0.3,
+			"spin": 0.15,
+			"color": "rgb(75,70,62)"
+		},
+		{
+			"type": "asteroid",
+			"x": -1300,
+			"y": -1000,
+			"radius": 28,
+			"angle": 4.5,
+			"spin": -0.06,
+			"color": "rgb(88,80,72)"
+		},
+		{
+			"type": "debris",
+			"x": 800,
+			"y": 500,
+			"pieces": [
+				{ "ox": 0, "oy": 0, "r": 5, "shade": 70, "spin": 0.2 },
+				{ "ox": 12, "oy": -8, "r": 4, "shade": 65, "spin": -0.25 },
+				{ "ox": -10, "oy": 6, "r": 6, "shade": 75, "spin": 0.12 }
+			]
+		},
+		{
+			"type": "debris",
+			"x": -900,
+			"y": -400,
+			"pieces": [
+				{ "ox": 5, "oy": -5, "r": 4, "shade": 68, "spin": -0.18 },
+				{ "ox": -8, "oy": 10, "r": 5, "shade": 72, "spin": 0.22 },
+				{ "ox": 15, "oy": 3, "r": 3, "shade": 63, "spin": -0.1 },
+				{ "ox": -12, "oy": -12, "r": 6, "shade": 76, "spin": 0.08 }
+			]
+		}
+	]
+}
